@@ -47,8 +47,9 @@ def main():
     kk_rct.center = 900, 400  # 練習４
     a = 20 
     b = 10
+    c = 255
     bb_img = pg.Surface((a, a))
-    pg.draw.circle(bb_img, (255, 0, 0), (b, b), b)  # 練習１
+    pg.draw.circle(bb_img, (c, 0, 0), (b, b), b)  # 練習１
     bb_img.set_colorkey((0, 0, 0))  # 練習１
     x, y = random.randint(0, 1600), random.randint(0, 900)  # 練習２
     # screen.blit(bb_img, [x, y])  # 練習２
@@ -67,23 +68,28 @@ def main():
         if tmr == 300:
             a += 60
             b += 30
+            c -= 50  # 追加課題3、爆弾の色がどんどん黒くなっていく
         if tmr == 600:
             a += 60
             b += 30
+            c -= 50
         if tmr == 900:
             a += 60
             b += 30
+            c -= 50
         if tmr == 1200:
             a += 60
             b += 30
+            c -= 50
         if tmr == 1500:
             a += 60
             b += 30
+            c -= 50
         if tmr == 1800:
             a += 60
             b += 30
         bb_img = pg.Surface((a, a))
-        pg.draw.circle(bb_img, (255, 0, 0), (b, b), b)  # tmrが300増えるごとに円の直径が大きくなっていく
+        pg.draw.circle(bb_img, (c, 0, 0), (b, b), b)  # tmrが300増えるごとに円の直径が大きくなっていく
         bb_img.set_colorkey((0, 0, 0))
         key_lst = pg.key.get_pressed()
         for k, mv in delta.items():
