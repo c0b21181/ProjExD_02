@@ -55,8 +55,7 @@ def main():
                 return 0
 
         tmr += 1
-
-        # 練習４
+        # 追加課題1
         if tmr == 300:
             a += 60
             b += 30
@@ -76,7 +75,7 @@ def main():
             a += 60
             b += 30
         bb_img = pg.Surface((a, a))
-        pg.draw.circle(bb_img, (255, 0, 0), (b, b), b) 
+        pg.draw.circle(bb_img, (255, 0, 0), (b, b), b)  # tmrが300増えるごとに円の直径が大きくなっていく
         bb_img.set_colorkey((0, 0, 0))
         key_lst = pg.key.get_pressed()
         for k, mv in delta.items():
