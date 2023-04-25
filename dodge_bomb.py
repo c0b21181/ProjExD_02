@@ -62,34 +62,12 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return 0
-
         tmr += 1
-        # 追加課題1
-        if tmr == 300:
-            a += 60
-            b += 30
-            c -= 50  # 追加課題3、爆弾の色がどんどん黒くなっていく
-        if tmr == 600:
-            a += 60
-            b += 30
-            c -= 50
-        if tmr == 900:
-            a += 60
-            b += 30
-            c -= 50
-        if tmr == 1200:
-            a += 60
-            b += 30
-            c -= 50
-        if tmr == 1500:
-            a += 60
-            b += 30
-            c -= 50
-        if tmr == 1800:
-            a += 60
-            b += 30
-        bb_img = pg.Surface((a, a))
-        pg.draw.circle(bb_img, (c, 0, 0), (b, b), b)  # tmrが300増えるごとに円の直径が大きくなっていく
+        a = tmr / 100  # tmrが増えるごとに、直径がどんどん大きくなっていく
+        b = tmr / 100
+        c = 255 - tmr / 50  # tmrが増えるごとに、色がどんどん黒くなっていく
+        bb_img = pg.Surface((a*10, a*10))
+        pg.draw.circle(bb_img, (c, 0, 0), (b, b), b)
         bb_img.set_colorkey((0, 0, 0))
         key_lst = pg.key.get_pressed()
         for k, mv in delta.items():
@@ -109,7 +87,12 @@ def main():
             vy *= -1
         screen.blit(bb_img, bb_rct)  # 練習３
         if kk_rct.colliderect(bb_rct):  # 練習６
-            draw_text(screen,320,240,"GAMEOVER",100,[256,256,256])  # ボムに当たったらゲームオーバーを表示する
+            screen.blit(draw_text(screen,320,240,"GAMEOVER",100,[256,256,256]))  # ボムに当たったらゲームオーバーを表示する
+            tmr = 0
+            while True:
+                tmr += 1
+                if tmr == 1000:
+                    break
             return
         pg.display.update()
         clock.tick(1000)
