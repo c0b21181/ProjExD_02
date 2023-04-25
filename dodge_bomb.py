@@ -37,9 +37,10 @@ def main():
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct = kk_img.get_rect()  # 練習４ 
     kk_rct.center = 900, 400  # 練習４
-
-    bb_img = pg.Surface((20, 20))
-    pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)  # 練習１
+    a = 20 
+    b = 10
+    bb_img = pg.Surface((a, a))
+    pg.draw.circle(bb_img, (255, 0, 0), (b, b), b)  # 練習１
     bb_img.set_colorkey((0, 0, 0))  # 練習１
     x, y = random.randint(0, 1600), random.randint(0, 900)  # 練習２
     # screen.blit(bb_img, [x, y])  # 練習２
@@ -56,6 +57,27 @@ def main():
         tmr += 1
 
         # 練習４
+        if tmr == 300:
+            a += 60
+            b += 30
+        if tmr == 600:
+            a += 60
+            b += 30
+        if tmr == 900:
+            a += 60
+            b += 30
+        if tmr == 1200:
+            a += 60
+            b += 30
+        if tmr == 1500:
+            a += 60
+            b += 30
+        if tmr == 1800:
+            a += 60
+            b += 30
+        bb_img = pg.Surface((a, a))
+        pg.draw.circle(bb_img, (255, 0, 0), (b, b), b) 
+        bb_img.set_colorkey((0, 0, 0))
         key_lst = pg.key.get_pressed()
         for k, mv in delta.items():
             if key_lst[k]:
