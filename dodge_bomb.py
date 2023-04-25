@@ -27,6 +27,13 @@ def check_bound(scr_rct: pg.Rect, obj_rct: pg.Rect) -> tuple[bool, bool]:
         tate = False
     return yoko, tate
 
+def draw_text(screen,x,y,text,size,col):  # 文字を画面上に表示する関数
+    font = pg.font.match_font(None,size)
+    s = font.render(text,True,col)
+    x = x - s.get_width()/2
+    y = y - s.get_height()/2
+    screen.blit(s,[x,y])
+
 
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
@@ -34,6 +41,7 @@ def main():
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
+    gameover_kk_img = pg.image.load("ex02/fig/6.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct = kk_img.get_rect()  # 練習４ 
     kk_rct.center = 900, 400  # 練習４
@@ -95,8 +103,8 @@ def main():
             vy *= -1
         screen.blit(bb_img, bb_rct)  # 練習３
         if kk_rct.colliderect(bb_rct):  # 練習６
+            draw_text(screen,320,240,"GAMEOVER",100,[256,256,256])  # ボムに当たったらゲームオーバーを表示する
             return
-
         pg.display.update()
         clock.tick(1000)
 
