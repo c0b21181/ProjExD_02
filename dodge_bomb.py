@@ -14,7 +14,10 @@ def main():
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)  # 爆弾の設定
     bb_img.set_colorkey((0, 0, 0))  # 爆弾の四隅（黒）を透明にした
     x, y = random.randint(0, 1600), random.randint(0, 900)
-    screen.blit(bb_img, [x, y])
+    screen.blit(bb_img, [x, y])  #爆弾の座標をランダムに取得した
+    vx , vy = +1, +1
+    bb_rct = bb_img.get_rect()
+    bb_rct.center = x, y
     tmr = 0
 
     while True:
@@ -25,7 +28,8 @@ def main():
         tmr += 1
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, [900, 400])
-        screen.blit(bb_img, [x, y])
+        bb_rct.move_ip(vx, vy)
+        screen.blit(bb_img, bb_rct)
 
         pg.display.update()
         clock.tick(1000)
